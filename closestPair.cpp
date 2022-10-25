@@ -21,15 +21,18 @@ struct point
 
 void checkCell(point inputPoint, vector<point> cell, double &smallDist) {
        
-    double dist;    //distance between two points
-    //iterate thru all cells in vector
-    for(int i = 0; i < cell.size(); i++) {
-        //calculate distance
-        dist = sqrt(pow((cell.at(i).x - inputPoint.x), 2) + pow((cell.at(i).y - inputPoint.y), 2));
+    if(!cell.empty()){
+    
+        double dist;    //distance between two points
+        //iterate thru all cells in vector
+        for(int i = 0; i < cell.size(); i++) {
+            //calculate distance
+            dist = sqrt(pow((cell.at(i).x - inputPoint.x), 2) + pow((cell.at(i).y - inputPoint.y), 2));
 
-        //check if new distance is smaller than current smallest, update current smallest
-        if(dist < smallDist && dist != 0) {
-            smallDist = dist;
+            //check if new distance is smaller than current smallest, update current smallest
+            if(dist < smallDist && dist != 0) {
+                smallDist = dist;
+            }
         }
     }
 }
@@ -95,11 +98,17 @@ double closestPair(string filename) {
             if(ypos - 1 >= 0) {
                 checkCell(inputPoint, grid[xpos - 1][ypos - 1], smallDist); //upper left
             }
+            if(ypos + 1 <= b) {
+                checkCell(inputPoint, grid[xpos - 1][ypos + 1], smallDist); //lower left
+            }
             checkCell(inputPoint, grid[xpos - 1][ypos], smallDist); //left
         }
         if(xpos + 1 <= b) {
-            if(ypos + 1 <= b) {
+            if(ypos - 1 >= 0) {
                 checkCell(inputPoint, grid[xpos + 1][ypos - 1], smallDist); //upper right
+            }
+            if(ypos + 1 <= b) {
+                checkCell(inputPoint, grid[xpos + 1][ypos + 1], smallDist); //lower left
             }
             checkCell(inputPoint, grid[xpos + 1][ypos], smallDist); //right
         }
@@ -109,7 +118,6 @@ double closestPair(string filename) {
         if(ypos + 1 <= b) {
             checkCell(inputPoint, grid[xpos][ypos + 1], smallDist); //down
         }
-        delete inputPoint;
         //keep smallest distance obtained
     } 
     //return smallest distance
