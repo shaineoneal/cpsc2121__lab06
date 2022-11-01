@@ -1,8 +1,8 @@
 /*
- * Name:
- * Date Submitted:
- * Lab Section:
- * Assignment Name:
+ * Name: Shaine O'Neal
+ * Date Submitted: 10/25/22
+ * Lab Section: 4
+ * Assignment Name: Finding the Closest Pair of Points
  */
 
 #include <iostream>
@@ -94,20 +94,20 @@ double closestPair(string filename) {
         checkCell(inputPoint, grid[xpos][ypos], smallDist);
 
         //check all adjacent cells
-        if(xpos - 1 >= 0 ) {
+        if(xpos - 1 > 0 ) {
             if(ypos - 1 >= 0) {
                 checkCell(inputPoint, grid[xpos - 1][ypos - 1], smallDist); //upper left
             }
-            if(ypos + 1 <= b) {
+            if(ypos + 1 < b) {
                 checkCell(inputPoint, grid[xpos - 1][ypos + 1], smallDist); //lower left
             }
             checkCell(inputPoint, grid[xpos - 1][ypos], smallDist); //left
         }
-        if(xpos + 1 <= b) {
+        if(xpos + 1 < b) {
             if(ypos - 1 >= 0) {
                 checkCell(inputPoint, grid[xpos + 1][ypos - 1], smallDist); //upper right
             }
-            if(ypos + 1 <= b) {
+            if(ypos + 1 < b) {
                 checkCell(inputPoint, grid[xpos + 1][ypos + 1], smallDist); //lower left
             }
             checkCell(inputPoint, grid[xpos + 1][ypos], smallDist); //right
@@ -115,7 +115,7 @@ double closestPair(string filename) {
         if(ypos - 1 >= 0) {
             checkCell(inputPoint, grid[xpos][ypos - 1], smallDist); //up
         }
-        if(ypos + 1 <= b) {
+        if(ypos + 1 < b) {
             checkCell(inputPoint, grid[xpos][ypos + 1], smallDist); //down
         }
         //keep smallest distance obtained
@@ -124,7 +124,7 @@ double closestPair(string filename) {
     return smallDist;
 }
 
-int main()
+/*int main()
 {
     double min;
     string filename;
@@ -134,4 +134,4 @@ int main()
     cout << setprecision(16);
     cout << "Distance between closest pair of points: " << min << endl;
     return 0;
-}
+}*/
